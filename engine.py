@@ -3,10 +3,6 @@ import os
 
 import numpy as np
 
-
-
-
-
 from sklearn.datasets import make_classification
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -74,9 +70,11 @@ def load_weights_tsv(prefix, **mlp_kwargs):
 from fens_to_arrays import encode_for_model
 
 def get_model_eval(model, fen):
-    return model.predict(encode_for_model(model, fen))
+    #Return the model's prediction of the position
+    return model.predict(encode_for_model(model, fen))[0]
 
 def is_eval_better(a,b,colour):
+    #Helper function for the get best move function
     if colour == "white":
         if a > b:
             return True
@@ -88,6 +86,7 @@ def is_eval_better(a,b,colour):
 
 
 def get_model_best_move(model,fen,depth):
+    #1 or 2 ply search function 
     board = chess.Board(fen)
     legal_moves_generator = board.legal_moves
 
@@ -135,47 +134,17 @@ def get_model_best_move(model,fen,depth):
 
     return best_move_fen, best_move
 
+if __name__ == "__main__":
+    #Example script showing usage of the engine.
+    from pathlib import Path
 
+    # Get the absolute path of the folder containing this script
+    current_dir = Path(__file__).resolve().parent
+    model = load_weights_tsv(str(current_dir) + "/TinyZero 4.0 Weights/weights_13M")
 
-# NUM_FEATURES = 20 * 8 * 8  # 1280
+    example_fen = "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1"
 
-# model = load_weights_tsv("Iterations/TinyZero 2.0/weights_8M")
+    print(get_model_eval(model,example_fen))
 
+    print(get_model_best_move(model,example_fen,depth=2))
 
-
-# # # elo = determine_elo(model)
-
-# test_fen = "8/7R/p4kp1/2K2p2/r4P2/8/P2r3P/6R1 w - - 1 1" 
-# import time
-
-# print(get_model_eval(model,test_fen))
-# start = time.time()
-# print(get_model_best_move(model,test_fen))
-# print("Took",time.time()-start)
-# x = fen_to_planes(test_fen).reshape(1, -1).astype("float32") 
-
-# print(model.predict(x))
-# from stockfish import Stockfish
-
-# STOCKFISH_PATH = r"C:\stockfish\stockfish-windows-x86-64-universal.exe"
-# sf = Stockfish(path=STOCKFISH_PATH, depth=10)
-# sf.set_fen_position(test_fen)   # Black to move, Black is winning
-# print(sf.get_evaluation())
-
-# import csv, chess, numpy as np
-
-# V = {chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3, chess.ROOK: 5, chess.QUEEN: 9}
-# rows = {True: ([], []), False: ([], [])}
-
-# with open("fen_labelled.tsv") as f:
-#     for _, (fen, s) in zip(range(100_000), csv.reader(f, delimiter="\t")):
-#         b = chess.Board(fen)
-#         m = sum(v * (len(b.pieces(pt, True)) - len(b.pieces(pt, False)))
-#                 for pt, v in V.items())            # White minus Black material
-#         rows[b.turn][0].append(m)
-#         rows[b.turn][1].append(np.clip(float(s), -2000, 2000))
-
-# for turn, name in ((True, "white to move"), (False, "black to move")):
-#     m, l = map(np.array, rows[turn])
-#     print(name, "| mean label", round(l.mean()), "| frac<0", round((l < 0).mean(), 2),
-#           "| corr", round(np.corrcoef(m, l)[0, 1], 2))
