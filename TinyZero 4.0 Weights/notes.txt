@@ -1,0 +1,46 @@
+trained on ~13M positions + 300k opening specific data
+node config was (512,128,64)
+alpha=1e-3
+batch size = 1024
+2-ply algorithm
+28 plane input
+
+epoch 0 (2.0M rows seen): train 5.951  val 5.082  [White-to-move 4.906, Black-to-move 5.260]  (baseline 11.568)
+epoch 1 (4.0M rows seen): train 5.106  val 4.743  [White-to-move 4.553, Black-to-move 4.936]  (baseline 11.568)
+epoch 2 (6.0M rows seen): train 4.775  val 4.546  [White-to-move 4.100, Black-to-move 5.000]  (baseline 11.568)
+epoch 3 (8.0M rows seen): train 4.456  val 4.067  [White-to-move 3.885, Black-to-move 4.252]  (baseline 11.568)
+epoch 4 (10.0M rows seen): train 4.396  val 3.888  [White-to-move 3.681, Black-to-move 4.098]  (baseline 11.568)
+epoch 5 (12.0M rows seen): train 4.292  val 3.973  [White-to-move 3.553, Black-to-move 4.399]  (baseline 11.568)
+epoch 6 (14.0M rows seen): train 4.206  val 3.549  [White-to-move 3.549, Black-to-move 3.548]  (baseline 11.568)
+epoch 7 (16.0M rows seen): train 3.864  val 3.514  [White-to-move 3.313, Black-to-move 3.719]  (baseline 11.568)
+epoch 8 (18.0M rows seen): train 3.962  val 3.545  [White-to-move 3.332, Black-to-move 3.761]  (baseline 11.568)
+epoch 9 (20.0M rows seen): train 3.735  val 3.352  [White-to-move 3.058, Black-to-move 3.649]  (baseline 11.568)
+epoch 10 (22.0M rows seen): train 3.794  val 3.613  [White-to-move 3.122, Black-to-move 4.111]  (baseline 11.568)
+epoch 11 (24.0M rows seen): train 3.944  val 3.654  [White-to-move 3.960, Black-to-move 3.345]  (baseline 11.568)
+epoch 12 (26.0M rows seen): train 3.633  val 3.384  [White-to-move 3.226, Black-to-move 3.544]  (baseline 11.568)
+epoch 13 (28.0M rows seen): train 3.562  val 3.344  [White-to-move 3.271, Black-to-move 3.419]  (baseline 11.568)
+epoch 14 (30.0M rows seen): train 3.430  val 3.211  [White-to-move 3.016, Black-to-move 3.408]  (baseline 11.568)
+epoch 15 (32.0M rows seen): train 3.472  val 3.262  [White-to-move 3.215, Black-to-move 3.310]  (baseline 11.568)
+epoch 16 (34.0M rows seen): train 3.431  val 3.235  [White-to-move 3.124, Black-to-move 3.348]  (baseline 11.568)
+epoch 17 (36.0M rows seen): train 3.493  val 3.447  [White-to-move 2.937, Black-to-move 3.964]  (baseline 11.568)
+epoch 18 (38.0M rows seen): train 3.313  val 3.113  [White-to-move 2.989, Black-to-move 3.240]  (baseline 11.568)
+epoch 19 (40.0M rows seen): train 3.264  val 3.034  [White-to-move 2.898, Black-to-move 3.173]  (baseline 11.568)
+epoch 20 (42.0M rows seen): train 3.267  val 3.176  [White-to-move 2.886, Black-to-move 3.469]  (baseline 11.568)
+epoch 21 (44.0M rows seen): train 3.212  val 3.227  [White-to-move 2.985, Black-to-move 3.472]  (baseline 11.568)
+epoch 22 (46.0M rows seen): train 3.210  val 3.097  [White-to-move 3.097, Black-to-move 3.096]  (baseline 11.568)
+epoch 23 (48.0M rows seen): train 3.268  val 3.253  [White-to-move 2.783, Black-to-move 3.730]  (baseline 11.568)
+
+
+vs Stockfish 1320 + 100% random moves (~-450): 8.5/10
+vs Stockfish 1320 + 70% random moves (~-59): 10.0/10
+vs Stockfish 1320 + 50% random moves (~221): 9.0/10
+vs Stockfish 1320 + 35% random moves (~500): 8.5/10
+vs Stockfish 1320 + 25% random moves (~780): 9.5/10
+vs Stockfish 1320 + 15% random moves (~960): 8.0/10
+vs Stockfish 1320 + 8% random moves (~1140): 9.5/10
+vs Stockfish 1320 (~1320): 5.5/10
+vs Stockfish 1500 (~1500): 4.5/10
+vs Stockfish 1700 (~1700): 2.0/10
+vs Stockfish 1900 (~1900): 2.0/10
+vs Stockfish 2100 (~2100): 0.5/10
+Estimated Elo: ~1370
